@@ -1,17 +1,42 @@
 {
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "strict": true,
+    "module": "nodeNext",
+    "moduleResolution": "nodeNext",
+    "noImplicitAny": false,
+    "strict": false,
+    "noEmit": true,
     "paths": {
-      "@/*": [
-        "./*"
-      ]
+      "@apis/*": ["./apis/*"],
+      "@assets/*": ["./assets/*"],
+      "@components/*": ["./components/*"],
+      "@config/*": ["./config/*"],
+      "@constants/*": ["./constants/*"],
+      "@containers/*": ["./containers/*"],
+      "@hooks/*": ["./hooks/*"],
+      "@stores/*": ["./stores/*"],
+      "@styles/*": ["./styles/*"],
+      "@theme/*": ["./theme/*"],
+      "@utils/*": ["./utils/*"]
     }
   },
   "include": [
     "**/*.ts",
     "**/*.tsx",
     ".expo/types/**/*.ts",
-    "expo-env.d.ts"
+    "expo-env.d.ts",
+    "app.config.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "build",
+    "coverage",
+    "ios_dev",
+    "ios_release",
+    "android",
+    "logs",
+    "tmp",
+    "*.log"
   ]
 }
