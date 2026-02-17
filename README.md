@@ -111,5 +111,3 @@ pnpm lint
 
 - [Expo 공식 문서](https://docs.expo.dev/)
 - [React Native 공식 문서](https://reactnative.dev/)
-
-필요하다면 Turborepo / Vite 스타터 리드미처럼, 테스트/스토리북/모노레포 구조가 추가되면 이 문서에 섹션을 계속 확장해 나가면 됩니다.
