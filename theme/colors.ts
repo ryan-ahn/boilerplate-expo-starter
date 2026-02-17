@@ -309,12 +309,11 @@ export const colorSystem = (deviceTheme: ColorSchemeName) => {
       palette === "foreground" ||
       palette === "transparent"
     ) {
-      // light로 강제로 설정
-      return defineColor[palette]["light"];
+      return defineColor[palette][deviceTheme];
     }
     return (
       // light로 강제로 설정
-      defineColor[palette]["light"][shade || "default"] +
+      defineColor[palette][deviceTheme][shade || "default"] +
       getOpacityToken(opacity || 1)
     );
   };
