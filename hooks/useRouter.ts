@@ -7,12 +7,12 @@ export const useRouter = () => {
     router.push({ pathname: "/" });
   };
   // sample
-  const routeToSample = (id: string) => {
-    router.push({ pathname: "/sample", params: { id: id } });
+  const routeToSearch = (id: string) => {
+    router.push({ pathname: "/(screen)/search", params: { id: id } });
   };
 
   return {
     routeToHome,
-    routeToSample,
+    routeToSearch,
   };
 };

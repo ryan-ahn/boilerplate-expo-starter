@@ -13,7 +13,7 @@ module.exports = {
   importOrder: [
     "^(react|react-native)$",
     "<THIRD_PARTY_MODULES>",
-    "^@(apis|assets|components|config|constants|containers|hooks|scripts|stores|styles|theme|utils)(/.*)?$",
+    "^@(apis|assets|components|config|constants|containers|hooks|libs|scripts|stores|styles|theme|utils)(/.*)?$",
     "^(\\.\\.?/|/).*$",
     "types/(.*)$",
   ],

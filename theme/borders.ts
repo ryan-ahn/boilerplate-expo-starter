@@ -1,29 +1,10 @@
 import { getUnitToken } from "@theme/tokens";
 
-// interfaces
-export interface BorderRadius {
-  0: number;
-  4: number;
-  6: number;
-  8: number;
-  16: number;
-  24: number;
-  9999: number;
-}
+export type BorderRadius = typeof defineBorderRadius;
 
-export interface BorderWidth {
-  0.5: number;
-  1: number;
-  1.5: number;
-  2: number;
-  3: number;
-  4: number;
-  6: number;
-  8: number;
-}
+export type BorderWidth = typeof defineBorderWidth;
 
-// define border token
-export const defineBorderRadius: BorderRadius = {
+export const defineBorderRadius = {
   0: getUnitToken(0),
   4: getUnitToken(4),
   6: getUnitToken(6),
@@ -31,9 +12,9 @@ export const defineBorderRadius: BorderRadius = {
   16: getUnitToken(16),
   24: getUnitToken(24),
   9999: getUnitToken(9999),
-};
+} as const;
 
-export const defineBorderWidth: BorderWidth = {
+export const defineBorderWidth = {
   0.5: getUnitToken(0.5),
   1: getUnitToken(1),
   1.5: getUnitToken(1.5),
@@ -42,7 +23,7 @@ export const defineBorderWidth: BorderWidth = {
   4: getUnitToken(4),
   6: getUnitToken(6),
   8: getUnitToken(8),
-};
+} as const;
 
 // border system
 export const borderSystem = () => {

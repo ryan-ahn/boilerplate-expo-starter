@@ -7,58 +7,11 @@ import {
   getOpacityToken,
 } from "@theme/tokens";
 
-// interfaces
+export type Color = typeof defineColor;
+
 export type ExtendedShadeTokens = ShadeTokens & { default: string };
 
-export interface Color {
-  primary: {
-    light: ExtendedShadeTokens;
-    dark: ExtendedShadeTokens;
-  };
-  secondary: {
-    light: ExtendedShadeTokens;
-    dark: ExtendedShadeTokens;
-  };
-  purple: {
-    light: ExtendedShadeTokens;
-    dark: ExtendedShadeTokens;
-  };
-  green: {
-    light: ExtendedShadeTokens;
-    dark: ExtendedShadeTokens;
-  };
-  orange: {
-    light: ExtendedShadeTokens;
-    dark: ExtendedShadeTokens;
-  };
-  red: {
-    light: ExtendedShadeTokens;
-    dark: ExtendedShadeTokens;
-  };
-  rose: {
-    light: ExtendedShadeTokens;
-    dark: ExtendedShadeTokens;
-  };
-  gray: {
-    light: ExtendedShadeTokens;
-    dark: ExtendedShadeTokens;
-  };
-  background: {
-    light: string;
-    dark: string;
-  };
-  foreground: {
-    light: string;
-    dark: string;
-  };
-  transparent: {
-    light: string;
-    dark: string;
-  };
-}
-
-// define color token
-export const defineColor: Color = {
+export const defineColor = {
   primary: {
     light: {
       default: getColorToken("blue6"),
@@ -295,7 +248,7 @@ export const defineColor: Color = {
     light: "transparent",
     dark: "transparent",
   },
-};
+} as const;
 
 // color system
 export const colorSystem = (deviceTheme: ColorSchemeName) => {
@@ -309,11 +262,12 @@ export const colorSystem = (deviceTheme: ColorSchemeName) => {
       palette === "foreground" ||
       palette === "transparent"
     ) {
-      return defineColor[palette][deviceTheme];
+      // light로 강제로 설정
+      return defineColor[palette][deviceTheme || "light"];
     }
     return (
       // light로 강제로 설정
-      defineColor[palette][deviceTheme][shade || "default"] +
+      defineColor[palette][deviceTheme || "light"][shade || "default"] +
       getOpacityToken(opacity || 1)
     );
   };
