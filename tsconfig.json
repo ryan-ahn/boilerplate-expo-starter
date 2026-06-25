@@ -7,18 +7,23 @@
     "strict": false,
     "noEmit": true,
     "paths": {
-      "@apis/*": ["./apis/*"],
       "@assets/*": ["./assets/*"],
       "@components/*": ["./components/*"],
-      "@config/*": ["./config/*"],
       "@constants/*": ["./constants/*"],
       "@containers/*": ["./containers/*"],
       "@hooks/*": ["./hooks/*"],
       "@libs/*": ["./libs/*"],
+      "@providers/*": ["./providers/*"],
+      "@repositories/*": ["./repositories/*"],
+      "@services/*": ["./services/*"],
       "@stores/*": ["./stores/*"],
       "@styles/*": ["./styles/*"],
       "@theme/*": ["./theme/*"],
-      "@utils/*": ["./utils/*"]
+      "@utils/*": ["./utils/*"],
+      "@tabs/*": ["./app/(tabs)/*"],
+      "@stack/*": ["./app/(stack)/*"],
+      "@popup/*": ["./app/(popup)/*"],
+      "types/*": ["./types/*"]
     }
   },
   "include": [

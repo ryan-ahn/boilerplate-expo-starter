@@ -11,7 +11,6 @@ export interface Font {
   display: Record<1 | 2, FontStyleSet>;
   heading: Record<1 | 2 | 3 | 4 | 5 | 6 | 7, FontStyleSet>;
   body: Record<1 | 2 | 3, FontStyleSet>;
-  description: Record<1 | 2 | 3, FontStyleSet>;
   ui: Record<1 | 2 | 3 | 4 | 5 | 6 | 7, FontStyleSet>;
 }
 
@@ -80,23 +79,6 @@ export const defineFontToken: Font = {
     3: {
       fontSize: getUnitToken(14),
       lineHeight: getUnitToken(20),
-      fontWeight: getWeightToken(400),
-    },
-  },
-  description: {
-    1: {
-      fontSize: getUnitToken(13),
-      lineHeight: getUnitToken(20),
-      fontWeight: getWeightToken(400),
-    },
-    2: {
-      fontSize: getUnitToken(12),
-      lineHeight: getUnitToken(18),
-      fontWeight: getWeightToken(400),
-    },
-    3: {
-      fontSize: getUnitToken(11),
-      lineHeight: getUnitToken(16),
       fontWeight: getWeightToken(400),
     },
   },

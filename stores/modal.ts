@@ -1,52 +1,34 @@
 import { create } from "zustand";
 
-import { ButtonConfig, Direction, Variant } from "@components/modal";
+import { type ButtonConfig, type Direction } from "@components/modal";
 
-interface ModalState {
+export type ModalState = {
   isVisible: boolean;
-  variant?: Variant;
   direction?: Direction;
   title?: string;
   description?: string;
-  primaryButton: ButtonConfig;
+  primaryButton?: ButtonConfig;
   secondaryButton?: ButtonConfig;
   children?: React.ReactNode;
-}
+  preventBackdropClose?: boolean;
+};
 
-interface ModalStore extends ModalState {
-  openModal: (config: Omit<ModalState, "isVisible">) => void;
-  closeModal: () => void;
-  resetModal: () => void;
-}
-
-const initialModalState: ModalState = {
+export const initialModalState: ModalState = {
   isVisible: false,
   direction: "vertical",
-  title: "",
-  description: "",
-  primaryButton: {
-    text: "확인",
-    onClickFunction: () => {},
-  },
+  title: "타이틀",
+  description: "설명",
   children: undefined,
+  preventBackdropClose: false,
+};
+
+export type ModalStore = ModalState & {
+  setState: (state: Partial<ModalState>) => void;
+  resetModalState: () => void;
 };
 
 export const useModalStore = create<ModalStore>(set => ({
   ...initialModalState,
-  openModal: config =>
-    set({
-      isVisible: true,
-      variant: config.variant,
-      direction: config.direction,
-      title: config.title,
-      description: config.description,
-      primaryButton: config.primaryButton,
-      secondaryButton: config.secondaryButton,
-      children: config.children,
-    }),
-  closeModal: () =>
-    set({
-      isVisible: false,
-    }),
-  resetModal: () => set(initialModalState),
+  setState: state => set(state),
+  resetModalState: () => set(initialModalState),
 }));

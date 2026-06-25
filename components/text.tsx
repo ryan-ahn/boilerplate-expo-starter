@@ -22,9 +22,6 @@ export type Variant =
   | "body-1"
   | "body-2"
   | "body-3"
-  | "description-1"
-  | "description-2"
-  | "description-3"
   | "ui-1"
   | "ui-2"
   | "ui-3"
@@ -33,20 +30,20 @@ export type Variant =
   | "ui-6"
   | "ui-7";
 
-interface Props {
+type Props = {
   customStyles?: {
-    textStyle?: TextStyle;
+    textStyle?: TextStyle | TextStyle[];
   };
   variant: Variant;
   color?: string;
   weight?: number;
-  children: string | number;
+  children: React.ReactNode;
   numberOfLines?: number;
   ellipsizeMode?: TextProps["ellipsizeMode"];
   onLayout?: (event: LayoutChangeEvent) => void;
-}
+};
 
-/** ===============================
+/**
  * 텍스트 컴포넌트
  * @param customStyles 커스텀 스타일
  * @param variant 텍스트 형태
@@ -56,7 +53,7 @@ interface Props {
  * @param ellipsizeMode 텍스트 자르기 모드
  * @param children 텍스트 내용
  * @param onLayout 텍스트 레이아웃 변경 시 호출되는 콜백 함수
- * =============================== */
+ */
 const Text = ({
   customStyles,
   variant,
@@ -84,15 +81,17 @@ const Text = ({
   };
 
   const styles = StyleSheet.create({
-    text: {
+    container: {
       ...getTextStyle(),
-      ...(customStyles?.textStyle && customStyles.textStyle),
     },
   });
   // render
   return (
     <RNText
-      style={styles.text}
+      style={[
+        styles.container,
+        customStyles?.textStyle && customStyles.textStyle,
+      ]}
       numberOfLines={numberOfLines}
       ellipsizeMode={ellipsizeMode}>
       {children}

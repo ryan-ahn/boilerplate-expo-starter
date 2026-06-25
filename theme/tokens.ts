@@ -106,36 +106,6 @@ export interface ColorTokens {
   blue8: string;
   blue9: string;
   blue10: string;
-  sky1: string;
-  sky2: string;
-  sky3: string;
-  sky4: string;
-  sky5: string;
-  sky6: string;
-  sky7: string;
-  sky8: string;
-  sky9: string;
-  sky10: string;
-  yellow1: string;
-  yellow2: string;
-  yellow3: string;
-  yellow4: string;
-  yellow5: string;
-  yellow6: string;
-  yellow7: string;
-  yellow8: string;
-  yellow9: string;
-  yellow10: string;
-  purple1: string;
-  purple2: string;
-  purple3: string;
-  purple4: string;
-  purple5: string;
-  purple6: string;
-  purple7: string;
-  purple8: string;
-  purple9: string;
-  purple10: string;
   red1: string;
   red2: string;
   red3: string;
@@ -146,16 +116,6 @@ export interface ColorTokens {
   red8: string;
   red9: string;
   red10: string;
-  rose1: string;
-  rose2: string;
-  rose3: string;
-  rose4: string;
-  rose5: string;
-  rose6: string;
-  rose7: string;
-  rose8: string;
-  rose9: string;
-  rose10: string;
   orange1: string;
   orange2: string;
   orange3: string;
@@ -176,8 +136,10 @@ export interface ColorTokens {
   green8: string;
   green9: string;
   green10: string;
+  transparent: string;
   black: string;
   white: string;
+  kakao: string;
 }
 
 export const unitTokens: UnitTokens = new Proxy({} as Record<number, number>, {
@@ -270,56 +232,16 @@ export const opacityTokens: OpacityTokens = {
 };
 
 export const colorTokens: ColorTokens = {
-  gray1: "#FAFAFA",
-  gray2: "#F5F5F5",
-  gray3: "#E4E4E4",
-  gray4: "#D4D4D4",
-  gray5: "#A1A1A1",
-  gray6: "#717171",
-  gray7: "#525252",
-  gray8: "#3F3F3F",
-  gray9: "#272727",
-  gray10: "#181818",
-  blue1: "#E6F1FE",
-  blue2: "#CCE3FD",
-  blue3: "#99C7FB",
-  blue4: "#66AAF9",
-  blue5: "#338EF7",
-  blue6: "#006FEE",
-  blue7: "#005BC4",
-  blue8: "#004493",
-  blue9: "#002E62",
-  blue10: "#001731",
-  sky1: "#EBF5FF",
-  sky2: "#D7ECFF",
-  sky3: "#A3D3FF",
-  sky4: "#67B6FF",
-  sky5: "#45A6FF",
-  sky6: "#008CFF",
-  sky7: "#0079E8",
-  sky8: "#0066C5",
-  sky9: "#0459A6",
-  sky10: "#024A8C",
-  yellow1: "#FFFBEB",
-  yellow2: "#FFF6D7",
-  yellow3: "#FFEBA3",
-  yellow4: "#FFDE67",
-  yellow5: "#FFD233",
-  yellow6: "#FFC700",
-  yellow7: "#CC9F00",
-  yellow8: "#9A7800",
-  yellow9: "#5C4800",
-  yellow10: "#5C4800",
-  purple1: "#F2EAFA",
-  purple2: "#E4D4F4",
-  purple3: "#C9A9E9",
-  purple4: "#AE7EDE",
-  purple5: "#9353D3",
-  purple6: "#7828C8",
-  purple7: "#6020A0",
-  purple8: "#481878",
-  purple9: "#301050",
-  purple10: "#180828",
+  gray1: "#f6f6f6",
+  gray2: "#e3e3e3",
+  gray3: "#cccccc",
+  gray4: "#aaaaaa",
+  gray5: "#999999",
+  gray6: "#6b6b6b",
+  gray7: "#4d4d4d",
+  gray8: "#3a3a3a",
+  gray9: "#242424",
+  gray10: "#161616",
   red1: "#FFEBEB",
   red2: "#FFB8B8",
   red3: "#FF8F8F",
@@ -330,38 +252,40 @@ export const colorTokens: ColorTokens = {
   red8: "#CC0000",
   red9: "#9A0000",
   red10: "#7A0000",
-  rose1: "#FFEBEB",
-  rose2: "#F4C7C8",
-  rose3: "#EFA3A5",
-  rose4: "#E87D80",
-  rose5: "#DF5C5F",
-  rose6: "#D4494D",
-  rose7: "#B84144",
-  rose8: "#97383A",
-  rose9: "#772D2F",
-  rose10: "#592225",
-  orange1: "#FFEAD7",
-  orange2: "#FFDEC3",
-  orange3: "#FFCFA3",
-  orange4: "#FFB067",
-  orange5: "#FFA052",
-  orange6: "#FD9332",
-  orange7: "#E27F2D",
-  orange8: "#C36B27",
-  orange9: "#A15621",
-  orange10: "#7F421A",
-  green1: "#E8FAF0",
-  green2: "#D1F4E0",
-  green3: "#A2E9C1",
-  green4: "#74DFA2",
-  green5: "#45D483",
-  green6: "#17C964",
-  green7: "#12A150",
-  green8: "#0E793C",
+  orange1: "#f6dfdb",
+  orange2: "#f6c4ba",
+  orange3: "#f9ae9f",
+  orange4: "#fa8f79",
+  orange5: "#ff7b61",
+  orange6: "#ff5634",
+  orange7: "#ff4d2a",
+  orange8: "#ff411c",
+  orange9: "#e82802",
+  orange10: "#da2602",
+  green1: "#cfeddd",
+  green2: "#baddc9",
+  green3: "#9ad7b4",
+  green4: "#6aca94",
+  green5: "#41bc76",
+  green6: "#2a9c5c",
+  green7: "#158b48",
+  green8: "#097738",
   green9: "#095028",
   green10: "#095028",
+  blue1: "#E6F1FE",
+  blue2: "#CCE3FD",
+  blue3: "#99C7FB",
+  blue4: "#66AAF9",
+  blue5: "#338EF7",
+  blue6: "#006FEE",
+  blue7: "#005BC4",
+  blue8: "#004493",
+  blue9: "#002E62",
+  blue10: "#001731",
   black: "#000000",
   white: "#FFFFFF",
+  kakao: "#FEE500",
+  transparent: "transparent",
 };
 
 export const getUnitToken = <K extends keyof UnitTokens>(

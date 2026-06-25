@@ -1,61 +1,15 @@
-import {
-  DecimalTokens,
-  UnitTokens,
-  decimalTokens,
-  getUnitToken,
-  unitTokens,
-} from "@theme/tokens";
-
-// interfaces
-export interface Space {
-  1: number;
-  2: number;
-  3: number;
-  4: number;
-  5: number;
-  6: number;
-  7: number;
-  8: number;
-  12: number;
-  16: number;
-  20: number;
-  24: number;
-  28: number;
-  32: number;
-  36: number;
-  40: number;
-  44: number;
-  48: number;
-  52: number;
-  56: number;
-  60: number;
-  64: number;
-  68: number;
-  72: number;
-  76: number;
-  80: number;
-  84: number;
-  88: number;
-  92: number;
-  96: number;
-  100: number;
-  102: number;
-  120: number;
-  128: number;
-  150: number;
-  9999: number;
-}
+import { decimalTokens, getUnitToken, unitTokens } from "@theme/tokens";
 
 // define unit tokens
-export const defineUnit: UnitTokens = unitTokens;
+export const defineUnit = unitTokens;
 
 // define decimal tokens
-export const defineDecimal: DecimalTokens = {
+export const defineDecimal = {
   ...decimalTokens,
 };
 
 // define space tokens
-export const defineSpace: Space = {
+export const defineSpace = {
   1: getUnitToken(1),
   2: getUnitToken(2),
   3: getUnitToken(3),
@@ -64,8 +18,11 @@ export const defineSpace: Space = {
   6: getUnitToken(6),
   7: getUnitToken(7),
   8: getUnitToken(8),
+  10: getUnitToken(10),
   12: getUnitToken(12),
+  14: getUnitToken(14),
   16: getUnitToken(16),
+  18: getUnitToken(18),
   20: getUnitToken(20),
   24: getUnitToken(24),
   28: getUnitToken(28),
@@ -91,20 +48,23 @@ export const defineSpace: Space = {
   120: getUnitToken(120),
   128: getUnitToken(128),
   150: getUnitToken(150),
+  180: getUnitToken(180),
+  200: getUnitToken(200),
+  240: getUnitToken(240),
   9999: getUnitToken(9999),
-};
+} as const;
 
 // space system
 export const sizeSystem = () => {
-  const spacing = (key: keyof Space): number => {
+  const spacing = (key: keyof typeof defineSpace): number => {
     return defineSpace[key];
   };
 
-  const unit = (key: keyof UnitTokens): number => {
+  const unit = (key: keyof typeof defineUnit): number => {
     return defineUnit[key];
   };
 
-  const decimal = (key: keyof DecimalTokens): number => {
+  const decimal = (key: keyof typeof defineDecimal): number => {
     return defineDecimal[key];
   };
 

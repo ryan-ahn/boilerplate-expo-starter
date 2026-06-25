@@ -1,0 +1,63 @@
+---
+description: 스크린 파일 구조, 핸들러 네이밍, 컴포넌트 섹션 순서, 원칙·상태·경로
+globs: app/**/*.tsx
+alwaysApply: false
+---
+
+# 작성 규칙
+
+상세는 루트 위치의 `CONVENTIONS.md`, 실행·빌드·서밋은 `README.md` 참고.
+
+## 원칙
+
+- 의존성 최소화: 사용처에 두고, 두 곳 이상 쓸 때만 분리. 불필요한 컴포넌트화 지양.
+- 단일 책임: 한 파일·한 함수는 한 역할. 이름만 봐도 역할이 드러나게.
+- 가독성 우선: 성능에 지대한 영향을 주지 않는 한 **가독성을 먼저** 한다. 다만 과도한 재렌더링 등으로 사이클 파악이 어렵거나 레거시가 쌓이는 수준이면 성능을 먼저 고려한다.
+
+## 경로·타입
+
+- import 시 `@components/*`, `@hooks/*`, `@theme/*`, `@utils/*` 등 tsconfig 경로 별칭 사용.
+- `types/*`는 타입 전용이므로 `import type { ... }` 로만 가져옴.
+
+## 컴포넌트 파일 블록 순서
+
+import → 타입/Props → 스크린 컴포넌트 → `/** section */` → `/** inner components */` → `/** utils */` → `/** options */` → export (ScreenOptions, default).
+
+## 컴포넌트 내부 섹션 순서
+
+함수형 컴포넌트 안에서는 아래 순서로 블록을 구분합니다.
+
+1. `// hooks` – 커스텀/라이브러리 훅 호출
+2. `// refs` – `useRef`로 관리하는 ref들
+3. `// states` – `useState`와 전역 스토어/컨텍스트에서 가져온 상태들
+4. `// variables` – 상태로부터 파생된 계산 값(가벼운 파생 값)
+5. `// functions` – 특정 이벤트에 묶이지 않는, 재사용 가능한 순수 함수
+6. `// handlers` – 이벤트 핸들러들
+7. `// initialize` – 초기 1회 실행용 `useEffect`
+8. `// effects` – 의존성에 따라 동작하는 나머지 `useEffect`
+9. `// styles` – 스타일 정의
+10. `// render` – JSX 반환 부분
+
+필요한 섹션만 사용하고, 성능이 정말 필요할 때만 `useMemo`·`useCallback`·`React.memo`를 사용합니다.
+
+## 상태 관리
+
+- 상태는 필요한 최하위(또는 그 근처)에 둠. 상단에서 내려주면 리렌더 범위 커짐.
+- 전역 상태는 Context가 꼭 필요할 때만 Provider, 아니면 **Zustand** 사용.
+
+## 네이밍
+
+- **파일·폴더:** camelCase. 화면·컴포넌트 파일과 폴더 이름은 camelCase로 짓고, 라우트 그룹 폴더는 `(tabs)`, `(stack)`처럼 괄호를 사용합니다.
+- **컴포넌트:** PascalCase. 스크린은 `*Screen`, 섹션은 `*Section`, 헤더용은 `HeaderLeft`·`HeaderRight`처럼 역할이 드러나게 짓습니다.
+- **리소스:** kebab-case. 아이콘·이미지·폰트 등은 용도-상태-변형 순으로 이름을 짓습니다. (예: `btn-primary-active.png`)
+- **핸들러:** `handle` + `[대상]` + `[동작]` 패턴을 사용합니다. (예: `handleFormSubmit`, `handleHomeRoute`)
+
+## 코드 작성 - 조건식
+
+- 조건식에서는 `else`를 쓰지 않고 **early return(또는 early continue)** 으로 분기합니다.
+- `else`를 쓰면 조건이 늘어날수록 중첩이 깊어지고 읽기 어려워지기 때문에, 위에서 guard 조건으로 걸러 내고 아래에는 “조건을 통과한 경우”만 남기도록 작성합니다.
+
+## 코드 작성 - 함수
+
+- 컴포넌트·레포·서비스 계층의 함수는 **항상 파라미터에 타입 이름을 명시해서** 선언한다.
+- 유틸 함수나 커스텀 훅은 **함수 시그니처에 타입만 붙이고, 파라미터 분해는 함수 내부에서** 처리한다.

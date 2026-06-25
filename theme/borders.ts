@@ -9,12 +9,20 @@ export const defineBorderRadius = {
   4: getUnitToken(4),
   6: getUnitToken(6),
   8: getUnitToken(8),
+  12: getUnitToken(12),
   16: getUnitToken(16),
+  18: getUnitToken(18),
+  20: getUnitToken(20),
   24: getUnitToken(24),
+  28: getUnitToken(28),
+  32: getUnitToken(32),
+  36: getUnitToken(36),
+  40: getUnitToken(40),
   9999: getUnitToken(9999),
 } as const;
 
 export const defineBorderWidth = {
+  0: getUnitToken(0),
   0.5: getUnitToken(0.5),
   1: getUnitToken(1),
   1.5: getUnitToken(1.5),
