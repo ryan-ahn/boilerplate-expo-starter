@@ -1,55 +1,76 @@
-# vibin-app
+## Ryan's Expo Awesome Starter
 
-Expo(React Native) 기반 모바일 앱 프로젝트입니다.
+![Author](https://img.shields.io/badge/Author-ryan-orange.svg)
+![License](https://img.shields.io/badge/License-MIT-blue.svg)
+![Last Commit](https://img.shields.io/github/last-commit/ryan-ahn/boilerplate-expo-starter)
+
+`create-expo-app` 기반으로 구성한 **Expo 스타터 템플릿**입니다.
 
 ---
 
-## 시작하기
+## Features
 
-1. 의존성 설치
+- **Expo + React Native**: iOS / Android / Web 을 동시에 노리는 크로스 플랫폼 환경
+- **Typed Programming (TypeScript)**: 전역에 타입을 적용해 안정적인 리팩터링과 자동완성 제공
+- **Routing / Navigation**: `expo-router` 기반 파일 라우팅 (필요시 `app` 디렉토리만 수정해서 사용)
+- **Theming & Styling**: 다크 모드 대응 가능한 색상 토큰/테마 구조 (`theme/` 활용)
+- **Lint & Format**: ESLint + Prettier로 일관된 코드 스타일 유지
+- **Absolute Import**: `@/` prefix 로 깔끔한 절대 경로 import
+- **Production Ready Scripts**: 개발/빌드/테스트/포맷/린트 스크립트 정리
+
+> 이 레포는 기본 Expo 템플릿에서 불필요한 부분을 정리하고, 실제 프로젝트에서 자주 쓰는 구조/패턴 위주로 다듬는 것을 목표로 합니다.
+
+---
+
+## Tech Stack
+
+- **Framework**: [Expo](https://expo.dev) + React Native
+- **Language**: TypeScript
+- **Routing**: `expo-router` (파일 기반 라우팅)
+- **Database**: [Supabase](https://supabase.com) 기반 Postgres DB
+- **ORM**: [Drizzle](https://orm.drizzle.team) (타입 안전한 쿼리/스키마 관리)
+- **Package Manager**: pnpm (또는 npm/yarn 으로 변경 가능)
+- **Lint / Format**: ESLint, Prettier
+- **Styling / Theme**: Expo 스타일 시스템 + 커스텀 테마 (`theme/`)
+
+---
+
+## Getting Started
+
+### 1) 의존성 설치
 
 ```bash
 npm install
 ```
 
-2. 환경 변수 설정
-
-루트에 **.env** 파일을 생성하고, 필요한 키 값은 관리자(**@ryan-ahn**)에게 요청합니다.
-
-3. 개발 서버 및 앱 실행
-
-개발 서버를 실행한 뒤, 시뮬레이터/기기에서 앱을 구동합니다.
+### 2) 개발 서버 실행
 
 ```bash
 npm start
 ```
 
-- **iOS 시뮬레이터:** `npm start` 이후 터미널에서 `i`
-- **Android 에뮬레이터:** `npm start` 이후 터미널에서 `a`
-- **휴대폰:** `npm start`로 JS 서버를 띄운 뒤, Dev Client/EAS 빌드된 앱에서 프로젝트를 실행
+터미널에 표시되는 옵션을 통해 아래 환경에서 바로 실행할 수 있습니다.
+
+- **iOS 시뮬레이터**
+- **Android 에뮬레이터**
+- **실기기 (Expo Go 앱)**
+- **웹 브라우저 (지원하는 경우)**
 
 ---
 
-## 빌드
+## 프로젝트 구조
 
-앱을 개발하거나 플랫폼(앱스토어)에 보내기 위한 Dev Client·프로덕션 앱 패키지를 만드는 단계입니다.
-Dev Client의 경우, 빌드 후 **`설치 문구`**가 떠서 **`Y`**를 누르면 앱이 해당 기기에 설치됩니다.
-
-- **시뮬레이터에서 개발용 빌드:** `npm run build:ios:simulator`
-- **휴대폰에서 개발용 빌드:** `npm run build:ios:device`
-- **프로덕션 제출용 빌드:** `npm run build:ios:production`
-
----
-
-## 서밋
-
-빌드된 앱 패키지를 플랫폼(앱스토어)에 보낼 때 사용합니다. 빌드를 완료한 뒤 실행합니다.
-
-- **프로덕션 제출:** `npm run submit:ios:production`
-
----
-
-## Q&A
-
-1. **Q. Dev Client는 언제 다시 빌드해야 하나요?**
-   A. 네이티브 패키지(iOS/Android 모듈)를 **추가·변경했을 때만** Dev Client를 다시 빌드합니다. JS/TS 코드만 수정하는 경우에는 기존 Dev Client를 그대로 사용해도 되고, 코드 변경 사항은 `npm start`로 띄운 Metro 번들이 자동으로 반영됩니다.
+```bash
+.
+├── app/          # 화면/라우트 (expo-router)
+├── assets/       # 정적 자산
+├── components/   # 공통 UI 컴포넌트
+├── constants/    # 상수 정의
+├── containers/   # 컨테이너 (Supabase/모달 등 프로바이더·레이아웃)
+├── hooks/        # 커스텀 훅
+├── libs/         # 외부 라이브러리 연동 (Drizzle 등)
+├── scripts/      # 스크립트 (시드 등)
+├── stores/       # 전역 상태 (Zustand)
+├── theme/        # 색상, 타이포, 라이트/다크 테마
+└── utils/        # 유틸 함수
+```
