@@ -1,66 +1,73 @@
+import React, { useCallback, useMemo } from "react";
+
 import Modal from "@components/modal";
+import { useModal } from "@hooks/useModal";
 import { useModalStore } from "@stores/modal";
 
-const ModalContainer = () => {
+const ModalContainer = React.memo(function ModalContainer() {
   const {
     isVisible,
-    variant,
     direction,
     title,
     description,
     children,
     primaryButton,
     secondaryButton,
+    preventBackdropClose,
     closeModal,
-    resetModal,
-  } = useModalStore();
+  } = useModal();
 
-  const handlePrimaryButtonPress = () => {
+  const handlePrimaryButtonPress = useCallback(() => {
+    const fn = useModalStore.getState().primaryButton?.onClickFunction;
     closeModal();
-    if (primaryButton.onClickFunction) {
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          primaryButton.onClickFunction();
-        });
-      });
-    }
-  };
+    fn?.();
+  }, [closeModal]);
 
-  const handleSecondaryButtonPress = () => {
+  const handleSecondaryButtonPress = useCallback(() => {
+    const fn = useModalStore.getState().secondaryButton?.onClickFunction;
     closeModal();
-    if (secondaryButton?.onClickFunction) {
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          secondaryButton.onClickFunction();
-        });
-      });
-    }
-  };
+    fn?.();
+  }, [closeModal]);
+
+  const handleBackdropPress = useCallback(() => {
+    if (preventBackdropClose) return;
+    closeModal();
+  }, [closeModal, preventBackdropClose]);
+
+  const primaryForModal = useMemo(
+    () =>
+      primaryButton
+        ? {
+            text: primaryButton.text,
+            onClickFunction: handlePrimaryButtonPress,
+          }
+        : undefined,
+    [primaryButton?.text, handlePrimaryButtonPress],
+  );
+
+  const secondaryForModal = useMemo(
+    () =>
+      secondaryButton
+        ? {
+            text: secondaryButton.text,
+            onClickFunction: handleSecondaryButtonPress,
+          }
+        : undefined,
+    [secondaryButton?.text, handleSecondaryButtonPress],
+  );
 
   return (
     <Modal
       isVisible={isVisible}
-      variant={variant}
       direction={direction}
       title={title}
       description={description}
-      onBackdropPress={closeModal}
-      onModalHide={resetModal}
-      primaryButton={{
-        text: primaryButton.text,
-        onClickFunction: handlePrimaryButtonPress,
-      }}
-      secondaryButton={
-        secondaryButton
-          ? {
-              text: secondaryButton.text,
-              onClickFunction: handleSecondaryButtonPress,
-            }
-          : undefined
-      }>
+      onBackdropPress={handleBackdropPress}
+      primaryButton={primaryForModal}
+      secondaryButton={secondaryForModal}>
       {children}
     </Modal>
   );
-};
+});
 
 export default ModalContainer;

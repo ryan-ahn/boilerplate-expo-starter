@@ -21,6 +21,9 @@
       "@styles/*": ["./styles/*"],
       "@theme/*": ["./theme/*"],
       "@utils/*": ["./utils/*"],
+      "@tabs/*": ["./app/(tabs)/*"],
+      "@stack/*": ["./app/(stack)/*"],
+      "@popup/*": ["./app/(popup)/*"],
       "types/*": ["./types/*"]
     }
   },
@@ -29,7 +32,8 @@
     "**/*.tsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts",
-    "app.config.ts"
+    "app.config.ts",
+    "scripts/generate-apple-secret.js"
   ],
   "exclude": [
     "node_modules",

@@ -1,35 +1,35 @@
 import version from "./version.json";
 
 export const appConfig = {
-  slug: "slug 입력",
-  name: "name 입력",
-  displayName: "displayName 입력",
+  slug: "noru",
+  name: "noru",
+  displayName: "noru",
   version: version.version,
   runtimeVersion: version.runtimeVersion,
   icon: "./assets/images/logo.png",
   orientation: "portrait",
-  scheme: "scheme 입력",
+  scheme: "noru",
   userInterfaceStyle: "automatic",
   newArchEnabled: true,
   ios: {
     supportsTablet: true,
-    bundleIdentifier: "bundle identifier 입력",
+    bundleIdentifier: "me.noonu.noru",
     entitlements: {
-      "com.apple.security.application-groups": ["group.bundle identifier 입력"],
+      "com.apple.security.application-groups": ["group.me.noonu.noru"],
     },
     infoPlist: {
       ITSAppUsesNonExemptEncryption: false,
       CFBundleAllowMixedLocalizations: true,
-      AppGroup: "group.bundle identifier 입력",
-      AppGroupIdentifier: "group.bundle identifier 입력",
+      AppGroup: "group.me.noonu.noru",
+      AppGroupIdentifier: "group.me.noonu.noru",
       CFBundleURLTypes: [
         {
-          CFBundleURLSchemes: ["scheme 입력"],
+          CFBundleURLSchemes: ["noru"],
           CFBundleTypeRole: "Editor",
         },
         {
           CFBundleURLSchemes: [
-            "com.googleusercontent.apps.google client id 입력",
+            "com.googleusercontent.apps.143770688861-rr13gp7rd8tk97sv23dpgn474d2v20tb",
           ],
         },
       ],
@@ -53,6 +53,14 @@ export const appConfig = {
   plugins: [
     "expo-router",
     [
+      "expo-build-properties",
+      {
+        ios: {
+          extraPods: [{ name: "AppCheckCore", version: "11.2.0" }],
+        },
+      },
+    ],
+    [
       "expo-splash-screen",
       {
         image: "./assets/images/logo.png",
@@ -73,18 +81,6 @@ export const appConfig = {
           "앱 사용 중 현재 위치 기반 서비스를 제공하기 위해 위치를 사용할 수 있도록 허용하시겠습니까?",
       },
     ],
-    [
-      "expo-share-extension",
-      {
-        activationRules: [{ type: "url", max: 1 }, { type: "text" }],
-        excludedPackages: [
-          "expo-dev-client",
-          "expo-splash-screen",
-          "expo-updates",
-          "expo-font",
-        ],
-      },
-    ],
     "expo-sqlite",
   ],
   experiments: {
@@ -94,15 +90,15 @@ export const appConfig = {
   extra: {
     router: {},
     eas: {
-      projectId: "project id 입력",
+      projectId: "321a8bf2-5cf5-4024-bf6e-961106f9a5c0",
     },
   },
   owner: "ryan-ahn",
   updates: {
-    url: "url 입력",
+    url: "https://u.expo.dev/321a8bf2-5cf5-4024-bf6e-961106f9a5c0",
   },
   android: {
-    package: "package name 입력",
+    package: "me.noonu.noru",
   },
 };
 

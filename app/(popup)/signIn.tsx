@@ -1,7 +1,6 @@
 import React, { useMemo, useState } from "react";
 import { ActivityIndicator, Platform, StyleSheet, View } from "react-native";
 
-import { Image } from "expo-image";
 import * as Linking from "expo-linking";
 import { Route, Stack, useLocalSearchParams } from "expo-router";
 import * as WebBrowser from "expo-web-browser";
@@ -33,10 +32,8 @@ type Props = {
 };
 
 /**
- * ===============================
  * 로그인 스크린
  * @param redirect 로그인 후 리다이렉트 할 경로
- * ===============================
  */
 const SignInScreen = () => {
   // hooks
@@ -87,15 +84,7 @@ const TitleSection = () => {
     <View style={[flex.center, styles.wrapper]}>
       <View style={[gap.g8]}>
         <View style={[gap.g4]}>
-          <View style={[flex.row, flex.startCenter, gap.g2]}>
-            <Image
-              source={require("@assets/images/logo.png")}
-              style={styles.logoImage}
-            />
-            <Text
-              variant="heading-1"
-              color={colors("foreground")}>{`Vibin`}</Text>
-          </View>
+          <Text variant="heading-1" color={colors("foreground")}>{`NORU`}</Text>
         </View>
       </View>
     </View>

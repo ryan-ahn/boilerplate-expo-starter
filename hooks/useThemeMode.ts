@@ -3,20 +3,20 @@ import { useCallback, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { useToastActions } from "@hooks/useToast";
-import { type ThemeMode, useThemeModeStore } from "@stores/themeMode";
+import { type ThemeMode, useModeStore } from "@stores/mode";
 import { parseStoredTheme } from "@utils/parser";
 
 export const THEME_STORAGE_KEY = "settings.theme";
 
 export const useThemeModeState = () => {
-  const { themeMode } = useThemeModeStore();
+  const { themeMode } = useModeStore();
   return {
     themeMode: themeMode ?? "system",
   };
 };
 
 export const useThemeModeActions = () => {
-  const { setModeState: setThemeModeState } = useThemeModeStore();
+  const { setModeState: setThemeModeState } = useModeStore();
   const { showToast } = useToastActions();
   // effects
   useEffect(() => {

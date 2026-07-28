@@ -1,5 +1,13 @@
-import HomeScreen from "../(stack)/home";
+import { View } from "react-native";
 
-export default function IndexScreen() {
-  return <HomeScreen />;
-}
+import Text from "@components/text";
+
+const IndexScreen = () => {
+  return (
+    <View>
+      <Text variant="heading-1">IndexScreen</Text>
+    </View>
+  );
+};
+
+export default IndexScreen;
